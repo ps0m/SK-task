@@ -1,20 +1,20 @@
 import cors from 'cors';
 import * as dotenv from 'dotenv';
-import express, { Application, Request, Response } from 'express';
+import express, { Request } from 'express';
+import expressWs from 'express-ws';
 import mongoose from 'mongoose';
+import { WebSocket } from 'ws';
 import router from './routes/contact-routes';
 dotenv.config()
 
 const PORT = process.env.PORT || 5000;
 const URL = process.env.URL || '';
 
-const app: Application = express();
-app.use(cors({ origin: '*' }))
-app.use(express.json());
+const { app, getWss } = expressWs(express());
+export const aWss = getWss();
 
-app.get("/", (req: Request, res: Response): void => {
-  res.send("Hello Typescript with Node.js!")
-});
+app.use(cors({}))
+app.use(express.json());
 
 mongoose.set("strictQuery", true);
 mongoose
@@ -27,3 +27,6 @@ app.listen(PORT, (): void => {
 });
 
 app.use(router);
+
+app.ws("/", (ws: WebSocket, req: Request): void => {
+});
