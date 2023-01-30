@@ -4,31 +4,21 @@ export enum MethodForSend {
   delete = 'delete',
 }
 
-export type Contact = {
+export interface IContact  {
+  _id: string
+  code: string
   phone: string
 }
 
-export type MessageForDeletedContact = {
-  operation: MethodForSend
+export interface IdContact {
   _id: string
 }
 
-export type BodyForDeletedContact = Omit<MessageForDeletedContact, "operation">;
-
-// export type AddedContactMessage = {
-//   operation: MethodForSend
-//   contact: Contact
-// }
-
-// export type AddedContact = Omit<AddedContactMessage, "operation">;
-
-export type MessageForCreatedUpdatedContact = {
+export interface MessageForDeletedContact extends IdContact {
   operation: MethodForSend
-  _id: string
-  contact: Contact
 }
 
-export type BodyForCreatedUpdatedContact = Omit<MessageForCreatedUpdatedContact, "operation">;
 
-
-
+export interface MessageForCreatedUpdatedContact extends IContact {
+  operation: MethodForSend
+}
