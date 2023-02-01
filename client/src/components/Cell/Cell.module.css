@@ -1,0 +1,40 @@
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  min-height: 10rem;
+  padding: 2rem;
+}
+
+.cell__input {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+
+  width: 100%;
+}
+
+.cell__text {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 1rem;
+}
+
+.cell__text:hover {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 450px) {
+  .cell {
+    padding: 1rem;
+  }
+
+  .cell__text {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
