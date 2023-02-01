@@ -5,7 +5,7 @@ import expressWs from 'express-ws';
 import mongoose from 'mongoose';
 import { WebSocket } from 'ws';
 import router from './routes/contact-routes';
-dotenv.config()
+dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 const URL = process.env.URL || '';
@@ -13,10 +13,10 @@ const URL = process.env.URL || '';
 const { app, getWss } = expressWs(express());
 export const aWss = getWss();
 
-app.use(cors({}))
+app.use(cors({}));
 app.use(express.json());
 
-mongoose.set("strictQuery", true);
+mongoose.set('strictQuery', true);
 mongoose
   .connect(URL)
   .then((res) => console.log('Connected to MongoDB'))
@@ -28,5 +28,4 @@ app.listen(PORT, (): void => {
 
 app.use(router);
 
-app.ws("/", (ws: WebSocket, req: Request): void => {
-});
+app.ws('/', (ws: WebSocket, req: Request): void => {});
